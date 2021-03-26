@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimalsShelter.DataAccess.Migrations
 {
-    [DbContext(typeof(AnimalsStorageContext))]
+    [DbContext(typeof(AnimalsShelterStorageContext))]
     [Migration("20210318220145_ValidationInClasses")]
     partial class ValidationInClasses
     {

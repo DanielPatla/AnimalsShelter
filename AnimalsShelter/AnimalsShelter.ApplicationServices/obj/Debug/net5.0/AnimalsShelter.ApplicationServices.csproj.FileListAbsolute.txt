@@ -1,0 +1,15 @@
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\bin\Debug\net5.0\AnimalsShelter.ApplicationServices.deps.json
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\bin\Debug\net5.0\AnimalsShelter.ApplicationServices.dll
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\bin\Debug\net5.0\ref\AnimalsShelter.ApplicationServices.dll
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\bin\Debug\net5.0\AnimalsShelter.ApplicationServices.pdb
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\bin\Debug\net5.0\AnimalsShelter.DataAccess.dll
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\bin\Debug\net5.0\AnimalsShelter.DataAccess.pdb
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.csprojAssemblyReference.cache
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.AssemblyInfoInputs.cache
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.AssemblyInfo.cs
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.csproj.CoreCompileInputs.cache
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.csproj.CopyComplete
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.dll
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\ref\AnimalsShelter.ApplicationServices.dll
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.ApplicationServices\obj\Debug\net5.0\AnimalsShelter.ApplicationServices.pdb

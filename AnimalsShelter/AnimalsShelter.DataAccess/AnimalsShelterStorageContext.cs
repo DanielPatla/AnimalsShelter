@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace AnimalsShelter.DataAccess
 {
-    class AnimalsStorageContext : DbContext
+    public class AnimalsShelterStorageContext : DbContext
     {
-        public AnimalsStorageContext(DbContextOptions<AnimalsStorageContext> opt) : base(opt)
+        public AnimalsShelterStorageContext(DbContextOptions<AnimalsShelterStorageContext> opt) : base(opt)
         {
         }
 

@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalsShelter", "AnimalsShelter\AnimalsShelter.csproj", "{CAA24495-8520-4983-8CB3-0DCDDFEEB2F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalsShelter.DataAccess", "AnimalsShelter.DataAccess\AnimalsShelter.DataAccess.csproj", "{25DAE2B9-DAD1-488B-BBD9-E472B5C167A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalsShelter.DataAccess", "AnimalsShelter.DataAccess\AnimalsShelter.DataAccess.csproj", "{25DAE2B9-DAD1-488B-BBD9-E472B5C167A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalsShelter.ApplicationServices", "AnimalsShelter.ApplicationServices\AnimalsShelter.ApplicationServices.csproj", "{EE44B466-34CD-43B3-96C2-7F86144DE492}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{25DAE2B9-DAD1-488B-BBD9-E472B5C167A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25DAE2B9-DAD1-488B-BBD9-E472B5C167A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25DAE2B9-DAD1-488B-BBD9-E472B5C167A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE44B466-34CD-43B3-96C2-7F86144DE492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE44B466-34CD-43B3-96C2-7F86144DE492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE44B466-34CD-43B3-96C2-7F86144DE492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE44B466-34CD-43B3-96C2-7F86144DE492}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
