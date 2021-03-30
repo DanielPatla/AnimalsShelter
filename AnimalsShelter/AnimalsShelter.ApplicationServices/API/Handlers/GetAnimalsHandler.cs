@@ -1,6 +1,7 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.Entities;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,28 +15,23 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
     public class GetAnimalsHandler : IRequestHandler<GetAnimalsRequest, GetAnimalsResponse>
     {
         private readonly IRepository<Animal> _animalRepository;
+        private readonly IMapper _mapper;
 
-        public GetAnimalsHandler(IRepository<DataAccess.Entities.Animal> animalRepository)
+        public GetAnimalsHandler(IRepository<DataAccess.Entities.Animal> animalRepository, IMapper mapper)
         {
             _animalRepository = animalRepository;
+            _mapper = mapper;
         }
 
-        public Task<GetAnimalsResponse> Handle(GetAnimalsRequest request, CancellationToken cancellationToken)
+        public async Task<GetAnimalsResponse> Handle(GetAnimalsRequest request, CancellationToken cancellationToken)
         {
-            var animals = _animalRepository.GetAll();
-            var domainAnimals = animals.Select(x => new Domain.Models.Animal()
-            {
-                Name = x.Name,
-                Age = x.Age,
-                Sex = x.Sex,
-                Breed = x.Breed
-            });
-
+            var animals = await _animalRepository.GetAll();
+            var mappedAnimals = _mapper.Map<List<Domain.Models.Animal>>(animals);
             var response = new GetAnimalsResponse()
             {
-                Data = domainAnimals.ToList()
+                Data = mappedAnimals
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

@@ -14,19 +14,17 @@ namespace AnimalsShelter.Controllers
     {
         private readonly IRepository<Specie> _specieRepository;
 
-        public SpeciesController(IRepository<Specie> specieRepository)
-        {
+        public SpeciesController(IRepository<Specie> specieRepository) => 
             _specieRepository = specieRepository;
-        }
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<Specie> GetAllSpecies() =>
+        public Task<List<Specie>> GetAllSpecies() =>
             _specieRepository.GetAll();
 
         [HttpGet]
         [Route("specieId")]
-        public Specie GetSpecieById(int specieId) => 
+        public Task<Specie> GetSpecieById(int specieId) => 
             _specieRepository.GetById(specieId);
     }
 }

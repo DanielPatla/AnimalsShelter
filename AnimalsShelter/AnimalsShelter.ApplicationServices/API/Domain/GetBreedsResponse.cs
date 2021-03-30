@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using AnimalsShelter.ApplicationServices.API.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnimalsShelter.ApplicationServices.API.Domain
 {
-    public class GetAnimalsRequest : IRequest<GetAnimalsResponse>
+    public class GetBreedsResponse : ResponseBase<List<Breed>>
     {
     }
 }
