@@ -1,10 +1,10 @@
 ﻿using AnimalsShelter.DataAccess;
-using AnimalsShelter.DataAccess.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnimalsShelter.DataAccess.Entities;
 
 namespace AnimalsShelter.Controllers
 {

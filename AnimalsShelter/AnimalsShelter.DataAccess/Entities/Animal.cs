@@ -13,8 +13,6 @@ namespace AnimalsShelter.DataAccess.Entities
         [ForeignKey("Breed")]
         public int BreedId { get; set; }
 
-        public Breed Breed { get; set; }
-
         [Required]
         [MaxLength(20)]
         public string Name { get; set; }

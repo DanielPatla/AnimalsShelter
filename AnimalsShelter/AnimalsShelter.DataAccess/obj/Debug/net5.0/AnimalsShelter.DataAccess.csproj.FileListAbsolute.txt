@@ -2,7 +2,6 @@ D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\bin\Debug\net5.0\
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\bin\Debug\net5.0\AnimalsShelter.DataAccess.dll
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\bin\Debug\net5.0\ref\AnimalsShelter.DataAccess.dll
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\bin\Debug\net5.0\AnimalsShelter.DataAccess.pdb
-D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\AnimalsShelter.DataAccess.csprojAssemblyReference.cache
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\AnimalsShelter.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\AnimalsShelter.DataAccess.AssemblyInfoInputs.cache
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\AnimalsShelter.DataAccess.AssemblyInfo.cs

@@ -10,16 +10,18 @@ namespace AnimalsShelter.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AnimalsController : ControllerBase
+    public class AnimalController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AnimalsController(IMediator mediator) =>
+        public AnimalController(IMediator mediator)
+        {
             _mediator = mediator;
+        }
 
-        [HttpGet]
+        [HttpPost]
         [Route("")]
-        public async Task<IActionResult> GetAllAnimals([FromQuery] GetAnimalsRequest request)
+        public async Task<IActionResult> AddAnimal([FromBody] AddAnimalRequest request)
         {
             var response = await _mediator.Send(request);
             return this.Ok(response);

@@ -1,6 +1,7 @@
 using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.ApplicationServices.Mappings;
 using AnimalsShelter.DataAccess;
+using AnimalsShelter.DataAccess.CQRS;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,9 @@ namespace AnimalsShelter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IQueryExecutor, QueryExecutor>();
+            services.AddTransient<ICommandExecutor, CommandExecutor>();
+
             services.AddAutoMapper(typeof(AnimalsProfile).Assembly);
 
             services.AddMediatR(typeof(ResponseBase<>));

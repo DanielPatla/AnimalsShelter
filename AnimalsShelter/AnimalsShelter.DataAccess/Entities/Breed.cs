@@ -13,8 +13,6 @@ namespace AnimalsShelter.DataAccess.Entities
         [ForeignKey("Specie")]
         public int SpecieId { get; set; }
 
-        public Specie Specie { get; set; }
-
         [MaxLength(35)]
         public string Name { get; set; }
 

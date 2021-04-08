@@ -1,16 +1,14 @@
-﻿using AnimalsShelter.DataAccess.Entities;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimalsShelter.ApplicationServices.API.Domain.Models
+namespace AnimalsShelter.ApplicationServices.API.Domain
 {
-    public class Animal
+    public class AddAnimalRequest : IRequest<AddAnimalResponse>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int BreedId { get; set; }

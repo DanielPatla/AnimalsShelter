@@ -17,7 +17,7 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
         private readonly IRepository<Breed> _breedRepository;
         private readonly IMapper _mapper;
 
-        public GetBreedsHandler(IRepository<DataAccess.Entities.Breed> breedRepository, IMapper mapper)
+        public GetBreedsHandler(IRepository<Breed> breedRepository, IMapper mapper)
         {
             _breedRepository = breedRepository;
             _mapper = mapper;

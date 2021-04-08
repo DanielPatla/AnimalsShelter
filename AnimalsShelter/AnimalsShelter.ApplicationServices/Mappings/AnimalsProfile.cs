@@ -12,7 +12,7 @@ namespace AnimalsShelter.ApplicationServices.Mappings
     {
         public AnimalsProfile()
         {
-            this.CreateMap<AnimalsShelter.DataAccess.Entities.Animal, Animal>()
+            this.CreateMap<DataAccess.Entities.Animal, Animal>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
                 .ForMember(x => x.Age, y => y.MapFrom(z => z.Age))

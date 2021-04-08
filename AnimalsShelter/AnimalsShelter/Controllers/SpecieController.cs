@@ -1,5 +1,4 @@
-﻿using AnimalsShelter.ApplicationServices.API.Domain;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,16 +9,18 @@ namespace AnimalsShelter.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AnimalsController : ControllerBase
+    public class SpecieController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AnimalsController(IMediator mediator) =>
+        public SpecieController(IMediator mediator)
+        {
             _mediator = mediator;
+        }
 
-        [HttpGet]
+        [HttpPost]
         [Route("")]
-        public async Task<IActionResult> GetAllAnimals([FromQuery] GetAnimalsRequest request)
+        public async Task<IActionResult> AddSpecie([FromBody] AddSpecieRequest request)
         {
             var response = await _mediator.Send(request);
             return this.Ok(response);
