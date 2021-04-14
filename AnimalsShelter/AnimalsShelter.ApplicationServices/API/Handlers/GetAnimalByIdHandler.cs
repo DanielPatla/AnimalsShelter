@@ -1,7 +1,6 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.CQRS.Queries;
-using AnimalsShelter.DataAccess.Entities;
 using AutoMapper;
 using MediatR;
 using System;
@@ -13,28 +12,28 @@ using System.Threading.Tasks;
 
 namespace AnimalsShelter.ApplicationServices.API.Handlers
 {
-    public class GetAnimalsHandler : IRequestHandler<GetAnimalsRequest, GetAnimalsResponse>
+    public class GetAnimalByIdHandler : IRequestHandler<GetAnimalByIdRequest, GetAnimalByIdResponse>
     {
         private readonly IMapper _mapper;
         private readonly IQueryExecutor _queryExecutor;
 
-        public GetAnimalsHandler(IMapper mapper, IQueryExecutor queryExecutor)
+        public GetAnimalByIdHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
             _mapper = mapper;
             _queryExecutor = queryExecutor;
         }
 
-        public async Task<GetAnimalsResponse> Handle(GetAnimalsRequest request, CancellationToken cancellationToken)
+        public async Task<GetAnimalByIdResponse> Handle(GetAnimalByIdRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetAnimalsQuery()
+            var query = new GetAnimalQuery()
             {
-                BreedId = request.BreedId
+                Id = request.AnimalId
             };
-            var animals = await _queryExecutor.Execute(query);
-            var mappedAnimals = _mapper.Map<List<Domain.Models.Animal>>(animals);
-            var response = new GetAnimalsResponse()
+            var animal = await _queryExecutor.Execute(query);
+            var mappedAnimal = _mapper.Map<Domain.Models.Animal>(animal);
+            var response = new GetAnimalByIdResponse()
             {
-                Data = mappedAnimals
+                Data = mappedAnimal
             };
             return response;
         }

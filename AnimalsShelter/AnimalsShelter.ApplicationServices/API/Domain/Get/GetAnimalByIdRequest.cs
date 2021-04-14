@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AnimalsShelter.ApplicationServices.API.Domain
 {
-    public class GetAnimalsRequest : IRequest<GetAnimalsResponse>
+    public class GetAnimalByIdRequest : IRequest<GetAnimalByIdResponse>
     {
+        public int AnimalId { get; set; }
     }
 }

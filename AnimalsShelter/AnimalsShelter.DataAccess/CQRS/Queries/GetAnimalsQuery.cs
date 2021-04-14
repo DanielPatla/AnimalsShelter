@@ -10,11 +10,11 @@ namespace AnimalsShelter.DataAccess.CQRS.Queries
 {
     public class GetAnimalsQuery : QueryBase<List<Animal>>
     {
-        public int Id { get; set; }
+        public int BreedId { get; set; }
 
         public override Task<List<Animal>> Execute(AnimalsShelterStorageContext context)
         {
-            return context.Animals.ToListAsync();
+            return context.Animals.Where(x => x.BreedId == this.BreedId).ToListAsync();
         }
     }
 }

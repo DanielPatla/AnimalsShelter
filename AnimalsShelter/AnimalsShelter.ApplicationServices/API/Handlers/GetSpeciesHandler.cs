@@ -17,7 +17,7 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
         private readonly IRepository<Specie> _specieRepository;
         private readonly IMapper _mapper;
 
-        public GetSpeciesHandler(IRepository<DataAccess.Entities.Specie> specieRepository, IMapper mapper)
+        public GetSpeciesHandler(IRepository<Specie> specieRepository, IMapper mapper)
         {
             _specieRepository = specieRepository;
             _mapper = mapper;

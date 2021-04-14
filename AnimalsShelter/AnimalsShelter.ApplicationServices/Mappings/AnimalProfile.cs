@@ -1,4 +1,5 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.Controllers;
 using AnimalsShelter.DataAccess.Entities;
 using AutoMapper;
 using System;
@@ -13,14 +14,23 @@ namespace AnimalsShelter.ApplicationServices.Mappings
     {
         public AnimalProfile()
         {
+            this.CreateMap<Animal, API.Domain.Models.Animal>()
+                .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
+                .ForMember(x => x.Sex, y => y.MapFrom(z => z.Sex))
+                .ForMember(x => x.Age, y => y.MapFrom(z => z.Age))
+                .ForMember(x => x.BreedId, y => y.MapFrom(z => z.BreedId));
+
             this.CreateMap<AddAnimalRequest, Animal>()
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
                 .ForMember(x => x.Sex, y => y.MapFrom(z => z.Sex))
                 .ForMember(x => x.Age, y => y.MapFrom(z => z.Age))
                 .ForMember(x => x.BreedId, y => y.MapFrom(z => z.BreedId));
 
-            this.CreateMap<Animal, API.Domain.Models.Animal>()
-                .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
+            this.CreateMap<RemoveAnimalRequest, Animal>()
+                .ForMember(x => x.Id, y => y.MapFrom(z => z.Id));
+
+            this.CreateMap<UpdateAnimalRequest, Animal>()
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
                 .ForMember(x => x.Sex, y => y.MapFrom(z => z.Sex))
                 .ForMember(x => x.Age, y => y.MapFrom(z => z.Age))

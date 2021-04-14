@@ -12,3 +12,4 @@ D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\bin\Debug\net5.0\AnimalsShelter.DataAccess.runtimeconfig.json
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\bin\Debug\net5.0\AnimalsShelter.DataAccess.runtimeconfig.dev.json
 D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\AnimalsShelter.DataAccess.genruntimeconfig.cache
+D:\Git\AnimalsShelter\AnimalsShelter\AnimalsShelter.DataAccess\obj\Debug\net5.0\AnimalsShelter.DataAccess.csprojAssemblyReference.cache
