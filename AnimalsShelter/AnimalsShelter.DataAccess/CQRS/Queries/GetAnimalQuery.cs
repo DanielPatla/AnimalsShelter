@@ -14,8 +14,7 @@ namespace AnimalsShelter.DataAccess.CQRS.Queries
 
         public override async Task<Animal> Execute(AnimalsShelterStorageContext context)
         {
-            var animal = await context.Animals.FirstOrDefaultAsync(x => x.Id == this.Id);
-            return animal;
+            return await context.Animals.FirstOrDefaultAsync(x => x.Id == this.Id);
         }
     }
 }

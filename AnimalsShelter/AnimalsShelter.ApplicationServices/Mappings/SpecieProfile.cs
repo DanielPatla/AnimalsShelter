@@ -1,4 +1,6 @@
-﻿using AnimalsShelter.Controllers;
+﻿using AnimalsShelter.ApplicationServices.API.Domain.Delete;
+using AnimalsShelter.ApplicationServices.API.Domain.Put;
+using AnimalsShelter.Controllers;
 using AnimalsShelter.DataAccess.Entities;
 using AutoMapper;
 using System;
@@ -18,6 +20,12 @@ namespace AnimalsShelter.ApplicationServices.Mappings
 
             this.CreateMap<Specie, API.Domain.Models.Specie>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
+
+            this.CreateMap<RemoveSpecieRequest, Specie>()
+                .ForMember(x => x.Id, y => y.MapFrom(z => z.Id));
+
+            this.CreateMap<UpdateSpecieRequest, Specie>()
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
         }
     }

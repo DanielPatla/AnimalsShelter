@@ -28,7 +28,7 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
         {
             var animal = _mapper.Map<Animal>(request);
             var command = new RemoveAnimalCommand() { Parameter = animal };
-            _ = await _commandExecutor.Executor(command);
+            await _commandExecutor.Executor(command);
             return new RemoveAnimalResponse()
             {
                 Data = null
