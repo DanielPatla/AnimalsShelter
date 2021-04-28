@@ -1,4 +1,4 @@
-﻿using AnimalsShelter.Controllers;
+﻿using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.DataAccess.CQRS;
 using AnimalsShelter.DataAccess.CQRS.Commands;
 using AnimalsShelter.DataAccess.Entities;

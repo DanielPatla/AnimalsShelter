@@ -17,7 +17,7 @@ namespace AnimalsShelter.DataAccess.Entities
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public short Age { get; set; }
+        public DateTime Age { get; set; }
 
         public bool Sex { get; set; }
     }

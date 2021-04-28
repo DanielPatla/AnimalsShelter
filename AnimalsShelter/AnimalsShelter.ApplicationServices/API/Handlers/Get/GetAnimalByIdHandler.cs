@@ -1,4 +1,5 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.ErrorHandling;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.CQRS.Queries;
 using AutoMapper;
@@ -30,12 +31,20 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
                 Id = request.AnimalId
             };
             var animal = await _queryExecutor.Execute(query);
+
+            if(animal == null)
+            {
+                return new GetAnimalByIdResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var mappedAnimal = _mapper.Map<Domain.Models.Animal>(animal);
-            var response = new GetAnimalByIdResponse()
+            return new GetAnimalByIdResponse()
             {
                 Data = mappedAnimal
             };
-            return response;
         }
     }
 }

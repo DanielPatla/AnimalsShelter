@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace AnimalsShelter.Controllers
+namespace AnimalsShelter.ApplicationServices.API.Domain
 {
     public class AddSpecieRequest : IRequest<AddSpecieResponse>
     {

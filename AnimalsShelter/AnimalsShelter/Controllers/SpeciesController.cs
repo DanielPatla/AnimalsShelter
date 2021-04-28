@@ -1,4 +1,5 @@
-﻿using AnimalsShelter.ApplicationServices.API.Domain.Delete;
+﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.Domain.Delete;
 using AnimalsShelter.ApplicationServices.API.Domain.Put;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.Entities;
@@ -13,50 +14,39 @@ namespace AnimalsShelter.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SpeciesController : ControllerBase
+    public class SpeciesController : ApiControllerBase
     {
-        private readonly IRepository<Specie> _specieRepository;
-        private readonly IMediator _mediator;
-
-        public SpeciesController(IRepository<Specie> specieRepository, IMediator mediator)
+        public SpeciesController(IMediator mediator) : base(mediator)
         {
-            _specieRepository = specieRepository;
-            _mediator = mediator;
         }
 
         [HttpGet]
         [Route("")]
-        public Task<List<Specie>> GetAllSpecies() =>
-            _specieRepository.GetAll();
-
-        [HttpGet]
-        [Route("{specieId}")]
-        public Task<Specie> GetSpecieById(int specieId) => 
-            _specieRepository.GetById(specieId);
+        public Task<IActionResult> GetAllSpecies([FromQuery] GetSpeciesRequest request)
+        {
+            return this.HandleRequest<GetSpeciesRequest, GetSpeciesResponse>(request);
+        }
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> AddSpecie([FromBody] AddSpecieRequest request)
+        public Task<IActionResult> AddSpecie([FromBody] AddSpecieRequest request)
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<AddSpecieRequest, AddSpecieResponse>(request);
         }
 
         [HttpPut]
         [Route("{specieId}")]
-        public async Task<IActionResult> UpdateSpecie([FromBody] UpdateSpecieRequest request, int specieId)
+        public Task<IActionResult> UpdateSpecie([FromBody] UpdateSpecieRequest request, int specieId)
         {
             request.Id = specieId;
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<UpdateSpecieRequest, UpdateSpecieResponse>(request);
         }
 
         [HttpDelete]
         [Route("{specieId}")]
-        public async Task<IActionResult> RemoveSpecie([FromBody] RemoveSpecieRequest request)
+        public Task<IActionResult> RemoveSpecie([FromBody] RemoveSpecieRequest request)
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<RemoveSpecieRequest, RemoveSpecieResponse>(request);
         }
     }
 }

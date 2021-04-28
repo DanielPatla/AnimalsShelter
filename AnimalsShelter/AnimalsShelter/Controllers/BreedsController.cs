@@ -1,5 +1,4 @@
 ﻿using AnimalsShelter.DataAccess;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,55 +8,45 @@ using MediatR;
 using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.ApplicationServices.API.Domain.Put;
 using AnimalsShelter.ApplicationServices.API.Domain.Delete;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalsShelter.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BreedsController : ControllerBase
+    public class BreedsController : ApiControllerBase
     {
-        private readonly IRepository<Breed> _breedRepository;
-        private readonly IMediator _mediator;
-
-        public BreedsController(IRepository<Breed> breedRepository, IMediator mediator)
+        public BreedsController(IMediator mediator) : base(mediator)
         {
-            _breedRepository = breedRepository;
-            _mediator = mediator;
         }
 
         [HttpGet]
         [Route("")]
-        public Task<List<Breed>> GetAllBreeds() =>
-            _breedRepository.GetAll();
-
-        [HttpGet]
-        [Route("breedId")]
-        public Task<Breed> GetBreedById(int breedId) =>
-            _breedRepository.GetById(breedId);
+        public Task<IActionResult> GetBreeds([FromQuery] GetBreedsRequest request)
+        {
+            return this.HandleRequest<GetBreedsRequest, GetBreedsResponse>(request);
+        }
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> AddBreed([FromBody] AddBreedRequest request)
+        public Task<IActionResult> AddBreed([FromBody] AddBreedRequest request)
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<AddBreedRequest, AddBreedResponse>(request);
         }
 
         [HttpPut]
         [Route("{breedId}")]
-        public async Task<IActionResult> UpdateBreed([FromBody] UpdateBreedRequest request, int breedId)
+        public Task<IActionResult> UpdateBreed([FromBody] UpdateBreedRequest request, int breedId)
         {
             request.Id = breedId;
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<UpdateBreedRequest, UpdateBreedResponse>(request);
         }
 
         [HttpDelete]
         [Route("{breedId}")]
-        public async Task<IActionResult> RemoveBreed([FromBody] RemoveBreedRequest request)
+        public Task<IActionResult> RemoveBreed([FromBody] RemoveBreedRequest request)
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<RemoveBreedRequest, RemoveBreedResponse>(request);
         }
     }
 }

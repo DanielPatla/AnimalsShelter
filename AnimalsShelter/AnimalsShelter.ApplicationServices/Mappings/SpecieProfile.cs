@@ -1,6 +1,6 @@
-﻿using AnimalsShelter.ApplicationServices.API.Domain.Delete;
+﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.Domain.Delete;
 using AnimalsShelter.ApplicationServices.API.Domain.Put;
-using AnimalsShelter.Controllers;
 using AnimalsShelter.DataAccess.Entities;
 using AutoMapper;
 using System;

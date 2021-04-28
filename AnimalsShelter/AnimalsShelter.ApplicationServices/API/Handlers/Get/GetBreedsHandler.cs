@@ -1,5 +1,6 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.DataAccess;
+using AnimalsShelter.DataAccess.CQRS.Queries;
 using AnimalsShelter.DataAccess.Entities;
 using AutoMapper;
 using MediatR;
@@ -14,24 +15,25 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
 {
     public class GetBreedsHandler : IRequestHandler<GetBreedsRequest, GetBreedsResponse>
     {
-        private readonly IRepository<Breed> _breedRepository;
         private readonly IMapper _mapper;
+        private readonly IQueryExecutor _queryExecutor;
 
-        public GetBreedsHandler(IRepository<Breed> breedRepository, IMapper mapper)
+        public GetBreedsHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            _breedRepository = breedRepository;
             _mapper = mapper;
+            _queryExecutor = queryExecutor;
         }
 
-        public Task<GetBreedsResponse> Handle(GetBreedsRequest request, CancellationToken cancellationToken)
+        public async Task<GetBreedsResponse> Handle(GetBreedsRequest request, CancellationToken cancellationToken)
         {
-            var breeds = _breedRepository.GetAll();
+            var query = new GetBreedsQuery();
+
+            var breeds = await _queryExecutor.Execute(query);
             var mappedBreeds = _mapper.Map<List<Domain.Models.Breed>>(breeds);
-            var response = new GetBreedsResponse()
+            return new GetBreedsResponse()
             {
                 Data = mappedBreeds
             };
-            return Task.FromResult(response);
         }
     }
 }

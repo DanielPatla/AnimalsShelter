@@ -19,12 +19,23 @@ namespace AnimalsShelter.DataAccess.Entities
 
         [Required]
         [MaxLength(25)]
-        public string UserName { get; set; }
+        public string FirstName { get; set; }
+
+        [Required]
+        [MaxLength(25)]
+        public string SurName { get; set; }
+
         public bool IsAdmin { get; set; }
+
         public bool Sex { get; set; }
+
+        [Required]
+        public DateTime Age { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string EmailAddress { get; set; }
+
         [MaxLength(15)]
         public string PhoneNumber { get; set; }
     }

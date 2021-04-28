@@ -1,5 +1,6 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.DataAccess;
+using AnimalsShelter.DataAccess.CQRS.Queries;
 using AnimalsShelter.DataAccess.Entities;
 using AutoMapper;
 using MediatR;
@@ -14,18 +15,20 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
 {
     public class GetSpeciesHandler : IRequestHandler<GetSpeciesRequest, GetSpeciesResponse>
     {
-        private readonly IRepository<Specie> _specieRepository;
         private readonly IMapper _mapper;
+        private readonly IQueryExecutor _queryExecutor;
 
-        public GetSpeciesHandler(IRepository<Specie> specieRepository, IMapper mapper)
+        public GetSpeciesHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            _specieRepository = specieRepository;
             _mapper = mapper;
+            _queryExecutor = queryExecutor;
         }
 
         public Task<GetSpeciesResponse> Handle(GetSpeciesRequest request, CancellationToken cancellationToken)
         {
-            var species = _specieRepository.GetAll();
+            var query = new GetSpeciesQuery();
+
+            var species = _queryExecutor.Execute(query);
             var mappedSpecies = _mapper.Map<List<Domain.Models.Specie>>(species);
             var response = new GetSpeciesResponse()
             {

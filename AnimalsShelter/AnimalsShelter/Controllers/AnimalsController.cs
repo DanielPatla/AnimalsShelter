@@ -12,65 +12,64 @@ namespace AnimalsShelter.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AnimalsController : ControllerBase
+    public class AnimalsController : ApiControllerBase
     {
-        private readonly IMediator _mediator;
         private readonly IRepository<Animal> _animalRepository;
 
-        public AnimalsController(IMediator mediator, IRepository<Animal> animalRepository)
+        public AnimalsController(IMediator mediator, IRepository<Animal> animalRepository) : base(mediator)
         {
-            _mediator = mediator;
             _animalRepository = animalRepository;
         }
 
         [HttpGet]
         [Route("")]
-        public Task<List<Animal>> GetAllAnimals() =>
-            _animalRepository.GetAll();
-
-        [HttpGet]
-        [Route("{breedId")]
-        public async Task<IActionResult> GetAnimalsByBreedId([FromQuery] GetAnimalsRequest request)
+        public Task<List<Animal>> GetAllAnimals()
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return _animalRepository.GetAll();
         }
 
         [HttpGet]
-        [Route("{animalId}")]
-        public async Task<IActionResult> GetAnimalById([FromRoute] int animalId)
+        [Route("getByBreedId/{breedId}")]
+        public Task<IActionResult> GetAnimalsByBreedId([FromRoute] int breedId)
+        {
+            var request = new GetAnimalsRequest()
+            {
+                BreedId = breedId
+            };
+            return this.HandleRequest<GetAnimalsRequest, GetAnimalsResponse>(request);
+        }
+
+        [HttpGet]
+        [Route("getById/{animalId}")]
+        public Task<IActionResult> GetAnimalById([FromRoute] int animalId)
         {
             var request = new GetAnimalByIdRequest()
             {
                 AnimalId = animalId
             };
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<GetAnimalByIdRequest, GetAnimalByIdResponse>(request);
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> AddAnimal([FromBody] AddAnimalRequest request)
+        public Task<IActionResult> AddAnimal([FromBody] AddAnimalRequest request)
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<AddAnimalRequest, AddAnimalResponse>(request);
         }
 
         [HttpPut]
         [Route("{animalId}")]
-        public async Task<IActionResult> UpdateAnimal([FromBody] UpdateAnimalRequest request, int animalId)
+        public Task<IActionResult> UpdateAnimal([FromBody] UpdateAnimalRequest request, int animalId)
         {
             request.Id = animalId;
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<UpdateAnimalRequest, UpdateAnimalResponse>(request);
         }
 
         [HttpDelete]
         [Route("{animalId}")]
-        public async Task<IActionResult> RemoveAnimal([FromBody] RemoveAnimalRequest request)
+        public Task<IActionResult> RemoveAnimal([FromBody] RemoveAnimalRequest request)
         {
-            var response = await _mediator.Send(request);
-            return this.Ok(response);
+            return this.HandleRequest<RemoveAnimalRequest, RemoveAnimalResponse>(request);
         }
     }
 }

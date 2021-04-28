@@ -15,7 +15,7 @@ namespace AnimalsShelter.ApplicationServices.API.Domain
 
         public bool Sex { get; set; }
 
-        public short Age { get; set; }
+        public DateTime Age { get; set; }
 
         public int BreedId { get; set; }
     }

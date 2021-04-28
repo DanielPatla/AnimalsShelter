@@ -1,7 +1,9 @@
 using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.Validators;
 using AnimalsShelter.ApplicationServices.Mappings;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.CQRS;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,10 +36,20 @@ namespace AnimalsShelter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddBreedRequestValidator>());
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
 
-            services.AddAutoMapper(typeof(AnimalsProfile).Assembly);
+            services.AddAutoMapper(typeof(AnimalProfile).Assembly);
+            services.AddAutoMapper(typeof(BreedProfile).Assembly);
+            services.AddAutoMapper(typeof(SpecieProfile).Assembly);
 
             services.AddMediatR(typeof(ResponseBase<>));
 
