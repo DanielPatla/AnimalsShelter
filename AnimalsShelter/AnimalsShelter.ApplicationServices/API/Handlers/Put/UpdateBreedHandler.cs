@@ -1,4 +1,6 @@
-﻿using AnimalsShelter.ApplicationServices.API.Domain.Put;
+﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.Domain.Put;
+using AnimalsShelter.ApplicationServices.API.ErrorHandling;
 using AnimalsShelter.DataAccess.CQRS;
 using AnimalsShelter.DataAccess.CQRS.Commands.Put;
 using AnimalsShelter.DataAccess.Entities;
@@ -29,6 +31,15 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers.Put
             var breed = _mapper.Map<Breed>(request);
             var command = new UpdateBreedCommand() { Parameter = breed };
             var breedFromDb = await _commandExecutor.Executor(command);
+
+            if (breed == null)
+            {
+                return new UpdateBreedResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             return new UpdateBreedResponse()
             {
                 Data = _mapper.Map<Domain.Models.Breed>(breedFromDb)

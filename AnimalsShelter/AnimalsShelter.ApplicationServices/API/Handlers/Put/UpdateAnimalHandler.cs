@@ -1,4 +1,5 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.ErrorHandling;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.CQRS;
 using AnimalsShelter.DataAccess.CQRS.Commands;
@@ -31,6 +32,15 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
             var animal = _mapper.Map<Animal>(request);
             var command = new UpdateAnimalCommand() { Parameter = animal };
             var animalFromDb = await _commandExecutor.Executor(command);
+
+            if(animal == null)
+            {
+                return new UpdateAnimalResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             return new UpdateAnimalResponse()
             {
                 Data = _mapper.Map<Domain.Models.Animal>(animalFromDb)

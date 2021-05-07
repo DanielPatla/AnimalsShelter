@@ -3,6 +3,7 @@ using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace AnimalsShelter.Controllers
     {
         private readonly IRepository<Animal> _animalRepository;
 
-        public AnimalsController(IMediator mediator, IRepository<Animal> animalRepository) : base(mediator)
+        public AnimalsController(IMediator mediator, IRepository<Animal> animalRepository, ILogger<AnimalsController> logger) : base(mediator)
         {
             _animalRepository = animalRepository;
+            logger.LogInformation("We are in Animals");
         }
 
         [HttpGet]

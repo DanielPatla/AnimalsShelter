@@ -5,6 +5,7 @@ using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,9 @@ namespace AnimalsShelter.Controllers
     [Route("[controller]")]
     public class SpeciesController : ApiControllerBase
     {
-        public SpeciesController(IMediator mediator) : base(mediator)
+        public SpeciesController(IMediator mediator, ILogger<SpeciesController> logger) : base(mediator)
         {
+            logger.LogInformation("We are in Species");
         }
 
         [HttpGet]

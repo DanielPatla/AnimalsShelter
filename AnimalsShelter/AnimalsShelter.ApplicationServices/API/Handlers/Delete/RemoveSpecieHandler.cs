@@ -1,4 +1,6 @@
-﻿using AnimalsShelter.ApplicationServices.API.Domain.Delete;
+﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.Domain.Delete;
+using AnimalsShelter.ApplicationServices.API.ErrorHandling;
 using AnimalsShelter.DataAccess.CQRS;
 using AnimalsShelter.DataAccess.CQRS.Commands.Delete;
 using AnimalsShelter.DataAccess.Entities;
@@ -29,6 +31,15 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers.Delete
             var specie = _mapper.Map<Specie>(request);
             var command = new RemoveSpecieCommand() { Parameter = specie };
             await _commandExecutor.Executor(command);
+
+            if (specie == null)
+            {
+                return new RemoveSpecieResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             return new RemoveSpecieResponse()
             {
                 Data = null

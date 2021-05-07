@@ -1,4 +1,5 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.ErrorHandling;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.CQRS.Queries;
 using AnimalsShelter.DataAccess.Entities;
@@ -24,17 +25,24 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
             _queryExecutor = queryExecutor;
         }
 
-        public Task<GetSpeciesResponse> Handle(GetSpeciesRequest request, CancellationToken cancellationToken)
+        public async Task<GetSpeciesResponse> Handle(GetSpeciesRequest request, CancellationToken cancellationToken)
         {
             var query = new GetSpeciesQuery();
+            var species = await _queryExecutor.Execute(query);
 
-            var species = _queryExecutor.Execute(query);
+            if(species == null)
+            {
+                return new GetSpeciesResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var mappedSpecies = _mapper.Map<List<Domain.Models.Specie>>(species);
-            var response = new GetSpeciesResponse()
+            return new GetSpeciesResponse()
             {
                 Data = mappedSpecies
             };
-            return Task.FromResult(response);
         }
     }
 }

@@ -12,7 +12,9 @@ namespace AnimalsShelter.DataAccess.CQRS.Queries
     {
         public override async Task<List<Breed>> Execute(AnimalsShelterStorageContext context)
         {
-            return await context.Breeds.ToListAsync();
+            return await context.Breeds
+                .Include(x => x.Animals)
+                .ToListAsync();
         }
     }
 }

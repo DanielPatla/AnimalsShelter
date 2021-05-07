@@ -1,4 +1,5 @@
 ﻿using AnimalsShelter.ApplicationServices.API.Domain;
+using AnimalsShelter.ApplicationServices.API.ErrorHandling;
 using AnimalsShelter.DataAccess;
 using AnimalsShelter.DataAccess.CQRS.Queries;
 using AnimalsShelter.DataAccess.Entities;
@@ -27,8 +28,16 @@ namespace AnimalsShelter.ApplicationServices.API.Handlers
         public async Task<GetBreedsResponse> Handle(GetBreedsRequest request, CancellationToken cancellationToken)
         {
             var query = new GetBreedsQuery();
-
             var breeds = await _queryExecutor.Execute(query);
+
+            if (breeds == null)
+            {
+                return new GetBreedsResponse()
+                {
+                    Error = new ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var mappedBreeds = _mapper.Map<List<Domain.Models.Breed>>(breeds);
             return new GetBreedsResponse()
             {

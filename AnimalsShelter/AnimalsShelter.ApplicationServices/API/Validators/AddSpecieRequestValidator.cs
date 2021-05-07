@@ -12,7 +12,7 @@ namespace AnimalsShelter.ApplicationServices.API.Validators
     {
         public AddSpecieRequestValidator()
         {
-            this.RuleFor(x => x.Name).Length(3, 35);
+            this.RuleFor(x => x.Name).Length(3, 35).WithMessage("The name should consist of a minimum of 3 characters and not more than 35 characters.");
         }
     }
 }

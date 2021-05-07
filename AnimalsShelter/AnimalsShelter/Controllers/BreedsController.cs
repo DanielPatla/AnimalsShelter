@@ -9,6 +9,7 @@ using AnimalsShelter.ApplicationServices.API.Domain;
 using AnimalsShelter.ApplicationServices.API.Domain.Put;
 using AnimalsShelter.ApplicationServices.API.Domain.Delete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AnimalsShelter.Controllers
 {
@@ -16,13 +17,14 @@ namespace AnimalsShelter.Controllers
     [Route("[controller]")]
     public class BreedsController : ApiControllerBase
     {
-        public BreedsController(IMediator mediator) : base(mediator)
+        public BreedsController(IMediator mediator, ILogger<BreedsController> logger) : base(mediator)
         {
+            logger.LogInformation("We are in Breeds");
         }
 
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetBreeds([FromQuery] GetBreedsRequest request)
+        public Task<IActionResult> GetAllBreeds([FromQuery] GetBreedsRequest request)
         {
             return this.HandleRequest<GetBreedsRequest, GetBreedsResponse>(request);
         }
