@@ -13,5 +13,7 @@ namespace AnimalsShelter.ApplicationServices.API.Domain.Models
         public string Name { get; set; }
 
         public List<string> Breeds { get; set; }
+
+        public List<string> Animals { get; set; }
     }
 }

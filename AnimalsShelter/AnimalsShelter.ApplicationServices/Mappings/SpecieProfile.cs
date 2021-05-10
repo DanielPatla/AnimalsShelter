@@ -20,8 +20,7 @@ namespace AnimalsShelter.ApplicationServices.Mappings
 
             this.CreateMap<Specie, API.Domain.Models.Specie>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
-                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
-                .ForMember(x => x.Breeds, y => y.MapFrom(z => z.Animals != null ? z.Animals.Select(x => x.Name) : new List<string>()));
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
 
             this.CreateMap<RemoveSpecieRequest, Specie>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id));

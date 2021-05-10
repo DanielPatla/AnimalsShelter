@@ -12,6 +12,6 @@ namespace AnimalsShelter.DataAccess.Entities
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public List<Breed> Animals { get; set; }
+        public List<Breed> Breeds { get; set; }
     }
 }
